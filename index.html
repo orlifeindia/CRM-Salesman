@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My CRM App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1>CRM Dashboard</h1>
+  <input type="text" id="search-box" placeholder="Search Customer..." style="margin-bottom:10px;">
+  <div id="summary" style="margin-bottom:10px; font-weight:bold;"></div>
+
+  <!-- Customer Form -->
+  <form id="customer-form">
+    <input type="text" id="name" placeholder="Customer Name" required>
+    <input type="text" id="email" placeholder="Email" required>
+    <input type="text" id="mobile" placeholder="Mobile Number" required>
+    <input type="text" id="status" placeholder="Order Status">
+    <button type="submit" id="submit-btn">Add Customer</button>
+  </form>
+
+  <!-- Customer Table -->
+  <table id="customers-table">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </table>
+
+  <!-- LEAD SECTION -->
+  <h2>Lead Management</h2>
+  <form id="lead-form">
+    <input type="text" id="lead-name" placeholder="Lead Name" required>
+    <input type="text" id="lead-mobile" placeholder="Mobile" required>
+    <input type="email" id="lead-email" placeholder="Email">
+    <select id="lead-status">
+      <option value="New">New</option>
+      <option value="Contacted">Contacted</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Converted">Converted</option>
+      <option value="Lost">Lost</option>
+    </select>
+    <button type="submit" id="lead-submit-btn">Add Lead</button>
+  </form>
+
+  <table id="leads-table">
+    <tr>
+      <th>Name</th>
+      <th>Mobile</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    <button id="show-consumer-btn">Consumer</button>
+    <button id="show-lead-btn">Lead</button>
+    <div id="details-view"></div> <!-- डिटेल्स यहाँ दिखेंगी -->
+
+  </table>
+
+  <script src="app.js"></script>
