@@ -7,7 +7,7 @@ var editLeadId = null;
 
 // DATA FETCH & TABLE SHOW
 function renderTable() {
-  fetch('http://localhost:3001/customers')
+  fetch('https://your-api.onrender.com/api/customers')
     .then(res => res.json())
     .then(all => {
       allCustomers = all;
@@ -89,7 +89,7 @@ function editCustomer(id, customer) {
 
 // DELETE FUNCTION
 function deleteCustomer(id) {
-  fetch('http://localhost:3001/customers/' + id, {
+  fetch('https://your-api.onrender.com/api/customers/' + id, {
     method: 'DELETE'
   })
     .then(res => res.json())
@@ -109,7 +109,7 @@ document.getElementById('customer-form').addEventListener('submit', function (e)
 
   if (editCustomerId !== null) {
     // UPDATE CUSTOMER
-    fetch('http://localhost:3001/customers/' + editCustomerId, {
+    fetch('https://your-api.onrender.com/api/customers/' + editCustomerId, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, mobile, status })
@@ -136,7 +136,7 @@ document.getElementById('customer-form').addEventListener('submit', function (e)
 
   } else {
     // ADD CUSTOMER
-    fetch('http://localhost:3001/customers', {
+    fetch('https://your-api.onrender.com/api/customers', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, mobile, status })
@@ -152,7 +152,7 @@ document.getElementById('customer-form').addEventListener('submit', function (e)
 
 // WhatsApp TABLE RENDER
 function renderLeadsTable() {
-  fetch('http://localhost:3001/leads')
+  fetch('https://your-api.onrender.com/api/leads')
     .then(res => res.json())
     .then(all => {
       allLeads = all;
@@ -215,7 +215,7 @@ function renderLeadsTable() {
         deleteBtn.textContent = 'Delete';
         deleteBtn.onclick = function () {
           if (confirm("Lead ko sach me delete karna hai?")) {
-            fetch('http://localhost:3001/leads/' + lead.id, {
+            fetch('https://your-api.onrender.com/api/leads/' + lead.id, {
               method: 'DELETE'
             })
               .then(res => res.json())
@@ -241,7 +241,7 @@ document.getElementById('lead-form').addEventListener('submit', function (e) {
 
   if (editLeadId !== null) {
     // UPDATE LEAD
-    fetch('http://localhost:3001/leads/' + editLeadId, {
+    fetch('https://your-api.onrender.com/api/leads/' + editLeadId, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, mobile, email, status })
@@ -256,7 +256,7 @@ document.getElementById('lead-form').addEventListener('submit', function (e) {
       });
   } else {
     // ADD LEAD
-    fetch('http://localhost:3001/leads', {
+    fetch('https://your-api.onrender.com/api/leads', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, mobile, email, status })
@@ -274,3 +274,8 @@ window.onload = function () {
   renderTable();
   renderLeadsTable();
 };
+node_modules/
+.env
+*.log
+.DS_Store
+npm-debug.log

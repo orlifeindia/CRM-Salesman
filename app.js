@@ -206,3 +206,4 @@ window.onload = function() {
       renderCustomersTable();
     });
 };
+

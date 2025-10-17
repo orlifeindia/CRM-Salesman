@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const { Client } = require('pg');
-const app = express();
+const path = require('path');      // <-- यहीं require करो
 
+const app = express();
 app.use(cors());
 app.use(express.json());
 
@@ -19,11 +20,17 @@ client.connect()
   .then(() => console.log('PostgreSQL connected!'))
   .catch(err => console.error('Connection error:', err));
 
+ 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+
 // ================= CUSTOMER ROUTES (with DB)
 app.post('/api/customers', async (req, res) => {
   try {
     const { name, email, mobile, status } = req.body;
-    const result = await pool.query(
+    const result = await client.query(
       'INSERT INTO customers (name, email, mobile, status) VALUES ($1, $2, $3, $4) RETURNING *',
       [name, email, mobile, status]
     );
@@ -33,16 +40,15 @@ app.post('/api/customers', async (req, res) => {
   }
 });
 
-
-app.get('/customers', async (req, res) => {
+app.get('/api/customers', async (req, res) => {
   try {
     const result = await client.query('SELECT * FROM customers');
     res.json(result.rows);
   } catch (err) {
-    console.error('DB Error:', err);
     res.status(500).json({ error: 'Database error', dbError: err });
   }
 });
+
 // ========== CUSTOMER UPDATE (PUT) ==========
 app.put('/customers/:id', async (req, res) => {
   try {
@@ -69,9 +75,9 @@ app.delete('/customers/:id', async (req, res) => {
     console.error('DB Error:', err);
     res.status(500).json({ error: 'Database error', dbError: err });
   }
-  aapp.delete('/api/customers/:id', async (req, res) => {
+  app.delete('/api/customers/:id', async (req, res) => {
   const { id } = req.params;
-  await pool.query('DELETE FROM customers WHERE id = $1', [id]);
+  await client.query('DELETE FROM customers WHERE id = $1', [id]);
   res.json({ success: true }); // Important! Frontend expects this
 });
 
@@ -135,6 +141,7 @@ app.delete('/leads/:id', async (req, res) => {
 });
 
 // Only one listen!
-app.listen(3001, () => {
-  console.log('🚀 Server चल गया! http://localhost:3001 पर');
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log('Server started on port', PORT);
 });
