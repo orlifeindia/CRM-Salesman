@@ -20,19 +20,19 @@ client.connect()
   .catch(err => console.error('Connection error:', err));
 
 // ================= CUSTOMER ROUTES (with DB)
-app.post('/customers', async (req, res) => {
+app.post('/api/customers', async (req, res) => {
   try {
     const { name, email, mobile, status } = req.body;
-    await client.query(
-      'INSERT INTO customers (name, email, mobile, status) VALUES ($1, $2, $3, $4)',
+    const result = await pool.query(
+      'INSERT INTO customers (name, email, mobile, status) VALUES ($1, $2, $3, $4) RETURNING *',
       [name, email, mobile, status]
     );
-    res.json({ status: 'Customer added successfully!' });
+    res.json(result.rows[0]); // add होने के साथ नया object वापस भेजो
   } catch (err) {
-    console.error('DB Error:', err);
     res.status(500).json({ error: 'Database error', dbError: err });
   }
 });
+
 
 app.get('/customers', async (req, res) => {
   try {
@@ -69,6 +69,12 @@ app.delete('/customers/:id', async (req, res) => {
     console.error('DB Error:', err);
     res.status(500).json({ error: 'Database error', dbError: err });
   }
+  aapp.delete('/api/customers/:id', async (req, res) => {
+  const { id } = req.params;
+  await pool.query('DELETE FROM customers WHERE id = $1', [id]);
+  res.json({ success: true }); // Important! Frontend expects this
+});
+
 });
 
 
