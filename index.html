@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>My CRM App</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
   <h1>CRM Dashboard</h1>
   <input type="text" id="search-box" placeholder="Search Customer..." style="margin-bottom:10px;">
   <div id="summary" style="margin-bottom:10px; font-weight:bold;"></div>
 
-  <!-- Customer Form -->
-  <form id="customer-form">
-    <input type="text" id="name" placeholder="Customer Name" required>
-    <input type="text" id="email" placeholder="Email" required>
-    <input type="text" id="mobile" placeholder="Mobile Number" required>
-    <input type="text" id="status" placeholder="Order Status">
-    <button type="submit" id="submit-btn">Add Customer</button>
-  </form>
+  <div class="tab-container">
+    <button class="tab-btn active" id="show-consumer-btn" onclick="showTab('consumer')">Consumer</button>
+    <button class="tab-btn" id="show-lead-btn" onclick="showTab('lead')">Lead</button>
+  </div>
 
-  <!-- Customer Table -->
-  <table id="customers-table">
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Mobile</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </table>
-
-  <!-- LEAD SECTION -->
-  <h2>Lead Management</h2>
-  <form id="lead-form">
+  <div id="consumer-section">
+      <form id="customer-form" style="margin-bottom:16px;">
+          <input type="text" id="name" placeholder="Customer Name" required>
+          <input type="text" id="email" placeholder="Email" required>
+          <input type="text" id="mobile" placeholder="Mobile Number" required>
+          <input type="text" id="status" placeholder="Order Status">
+          <button type="submit" id="submit-btn">Add Customer</button>
+      </form>
+      <table id="customers-table" border="1" cellspacing="0" cellpadding="4" style="width:100%;">
+          <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Status</th>
+              <th>Actions</th>
+          </tr>
+      </table>
+  </div>
+  <div id="lead-section" style="display:none;">
+  <form id="lead-form" style="margin-bottom:16px;">
     <input type="text" id="lead-name" placeholder="Lead Name" required>
     <input type="text" id="lead-mobile" placeholder="Mobile" required>
     <input type="email" id="lead-email" placeholder="Email">
-    <select id="lead-status">
-      <option value="New">New</option>
-      <option value="Contacted">Contacted</option>
-      <option value="In Progress">In Progress</option>
-      <option value="Converted">Converted</option>
-      <option value="Lost">Lost</option>
+    <select id="lead-status" required>
+      <option>New</option>
+      <option>Contacted</option>
+      <option>In Progress</option>
+      <option>Converted</option>
+      <option>Lost</option>
     </select>
     <button type="submit" id="lead-submit-btn">Add Lead</button>
   </form>
-
-  <table id="leads-table">
+  <table id="leads-table" border="1" cellspacing="0" cellpadding="4" style="width:100%;">
     <tr>
       <th>Name</th>
       <th>Mobile</th>
@@ -56,10 +55,16 @@
       <th>Status</th>
       <th>Action</th>
     </tr>
-    <button id="show-consumer-btn">Consumer</button>
-    <button id="show-lead-btn">Lead</button>
-    <div id="details-view"></div> <!-- डिटेल्स यहाँ दिखेंगी -->
-
   </table>
+</div>
 
+
+      <!-- Lead section code here -->
+      <p>This is Lead Section.</p>
+  
+    </div>
+
+  <!-- SCRIPT AT THE END -->
   <script src="app.js"></script>
+</body>
+</html>
