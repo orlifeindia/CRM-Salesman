@@ -8,14 +8,12 @@ app.use(cors());
 app.use(express.json());
 
 // PostgreSQL connection details
+console.log('USING DB URL:', process.env.DATABASE_URL);
+const { Client } = require('pg');
 const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'postgres',
-  password: 'Orlife@2025',
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
 });
-
 client.connect()
   .then(() => console.log('PostgreSQL connected!'))
   .catch(err => console.error('Connection error:', err));
@@ -66,21 +64,15 @@ app.put('/customers/:id', async (req, res) => {
 });
 
 // ========== CUSTOMER DELETE (DELETE) ==========
-app.delete('/customers/:id', async (req, res) => {
+app.delete('/api/customers/:id', async (req, res) => {
   try {
-    const id = req.params.id;
-    await client.query('DELETE FROM customers WHERE id=$1', [id]);
-    res.json({ status: 'Customer deleted successfully!' });
+    const { id } = req.params;
+    await client.query('DELETE FROM customers WHERE id = $1', [id]);
+    res.json({ success: true }); // Important! Frontend expects this
   } catch (err) {
     console.error('DB Error:', err);
     res.status(500).json({ error: 'Database error', dbError: err });
   }
-  app.delete('/api/customers/:id', async (req, res) => {
-  const { id } = req.params;
-  await client.query('DELETE FROM customers WHERE id = $1', [id]);
-  res.json({ success: true }); // Important! Frontend expects this
-});
-
 });
 
 
