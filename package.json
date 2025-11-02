@@ -38,10 +38,10 @@
   "name": "crm-backend",
   "version": "1.0.0",
   "description": "CRM System Backend",
-  "main": "server.js",
+  "main": "./server/server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node ./server/server.js",
+    "dev": "nodemon ./server/server.js"
   },
   "dependencies": {
     "axios": "^1.13.1",
@@ -54,8 +54,4 @@
     "nodemon": "^3.0.1"
   }
 }
-"main": "./server/server.js",
-"scripts": {
-  "start": "node ./server/server.js",
-  "dev": "nodemon ./server/server.js"
-},
+
