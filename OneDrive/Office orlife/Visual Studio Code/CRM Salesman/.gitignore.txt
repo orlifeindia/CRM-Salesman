@@ -1,3 +1,0 @@
-git add .gitignore
-git commit -m "fix: corrected .gitignore"
-git status
