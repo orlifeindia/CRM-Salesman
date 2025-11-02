@@ -1,0 +1,83 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5e6d3;
+  margin: 0;
+  padding: 20px;
+}
+.master-container {
+  max-width: 450px;
+  margin: 0 auto;
+  background: #ffe7db;
+  border: 1px solid #d4a574;
+  border-radius: 8px;
+  padding: 20px;
+}
+.title-bar {
+  background: #b85450;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  margin: -20px -20px 20px -20px;
+  border-radius: 8px 8px 0 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.form-label {
+  width: 130px;
+  color: #333;
+  font-weight: 500;
+}
+.form-input, .form-select {
+  flex: 1;
+  padding: 6px 8px;
+  border: 1px solid #c4a484;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.form-select {
+  width: 80px;
+  flex: none;
+}
+.button-row {
+  text-align: center;
+  margin-top: 20px;
+}
+.btn {
+  padding: 8px 25px;
+  margin: 0 5px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background: #e8e8e8;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn:hover {
+  background: #d8d8d8;
+}
+.hidden {
+  display: none;
+}
+.top-nav {
+  width: 100%;
+  background: #dab795;
+  padding: 12px 0;
+  margin-bottom: 25px;
+  text-align: center;
+  border-radius: 8px;
+}
+.top-nav a {
+  color: #8b3200;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 16px;
+  font-size: 15px;
+}
+.top-nav a:hover {
+  color: #b85450;
+  text-decoration: underline;
+}

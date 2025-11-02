@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM Dashboard</title>
+  <link rel="stylesheet" href="home.css">
+
+</head>
+
+<body>
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="brand">Orlife CRM</div>
+    <div class="side-menu">
+      <ul>
+        <li><a href="/index.html" class="side-link active"><span class="side-icon">🏠</span>Dashboard</a></li>
+        <li class="master-li">
+          <span class="side-link-btn" tabindex="1"><span class="side-icon">🗂️</span>Masters</span>
+
+          <div class="master-list">
+            <a href="/modules/master/item/item.html" class="side-link">Item</a>
+            <a href="/modules/master/Item_group/item_group.html" class="side-link">Item Group</a>
+
+            <a href="/modules/master/unit/unit.html" class="side-link">Unit</a>
+            <a href="/modules/consumer/consumer.html" class="side-link">Account</a>
+            <a href="/modules/master/group/account_group.html" class="side-link">Account Group</a>
+            <a href="/modules/master/bom/bom.html" class="side-link">Bill of Material</a>
+            <a href="/modules/master/gst/gst.html" class="side-link">GST Master</a>
+            <a href="/modules/master/salesman/salesman.html" class="side-link">Salesman</a>
+            <a href="/modules/master/saleshead/saleshead.html" class="side-link">Sales Head</a>
+            <a href="/modules/master/backup_restore/backup.html" class="side-link">Backup</a>
+            <a href="/modules/master/backup_restore/restore.html" class="side-link">Restore</a>
+          </div>
+          
+            <!--Buttaon Sais bar -->
+        <li><a href="/modules/whatsapp/whatsapp.html" class="side-link"><span class="side-icon">💬</span>WhatsApp</a>
+        </li>
+        <li><a href="/modules/reports/reports.html" class="side-link"><span class="side-icon">📊</span>Reports</a></li>
+        <li><a href="/modules/settings/settings.html" class="side-link"><span class="side-icon">⚙️</span>Settings</a>
+<!--transaction  Sais bar -->
+          <div class="transaction -list"></div>
+          <span class="side-link-btn" tabindex="1"><span class="side-icon">🧾</span>transaction</span>
+          <div class="transaction -list">
+          <a href="/modules/sale_invoice/sale_invoice.html" class="side-link">sale invoice</a>
+
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+  <!-- TOP NAVBAR -->
+  <nav class="navbar">
+    <a href="/index.html">🏠</a>
+    <a href="/index.html" class="active">Dashboard</a>
+    <a href="/modules/consumer/consumer.html">Consumer</a>
+    <a href="/modules/lead/lead.html">Lead</a>
+    <a href="/modules/order/order.html">Order</a>
+  </nav>
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <div class="page-header">
+      <h1>🏠 Dashboard</h1>
+      <p>Welcome to your CRM system overview</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card blue" onclick="window.location.href='/modules/consumer/consumer.html'">
+        <div class="stat-icon">👥</div>
+        <div class="stat-label">Total Customers</div>
+        <div class="stat-number" id="total-customers">0</div>
+      </div>
+      <div class="stat-card green" onclick="window.location.href='/modules/lead/lead.html'">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-label">Total Leads</div>
+        <div class="stat-number" id="total-leads">0</div>
+      </div>
+      <div class="stat-card orange">
+        <div class="stat-icon">📦</div>
+        <div class="stat-label">Pending Orders</div>
+        <div class="stat-number" id="pending-orders">0</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-icon">💰</div>
+        <div class="stat-label">Total Revenue</div>
+        <div class="stat-number" id="total-revenue">₹0</div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>
+        📦 Pending Orders
+        <span style="font-size: 14px; color: #7f8c8d; font-weight: 400;">Press Ctrl+F8 for quick invoice</span>
+      </h2>
+      <div class="toolbar">
+        <label>Sort By:</label>
+        <select id="sort-by" onchange="sortOrders()">
+          <option value="date-desc">Latest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="party-asc">Party Name (A-Z)</option>
+          <option value="party-desc">Party Name (Z-A)</option>
+          <option value="amount-desc">Highest Amount</option>
+          <option value="amount-asc">Lowest Amount</option>
+        </select>
+        <button onclick="refreshOrders()">🔄 Refresh</button>
+        <button onclick="window.location.href='/modules/order/order.html'" style="background: #27ae60;">➕ New
+          Order</button>
+      </div>
+      <table class="orders-table" id="orders-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Party Name</th>
+            <th>Order Date</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="shortcut-hint">💡 <strong>Ctrl+F8</strong> - Quick Invoice</div>
+  <script>
+    // Sidebar Masters hover/click => show master-list, mouseleave auto-hide
+    const masterLi = document.querySelector('.master-li');
+    const masterBtn = masterLi.querySelector('.side-link-btn');
+    masterLi.addEventListener('mouseenter', () => masterLi.classList.add('master-open'));
+    masterLi.addEventListener('mouseleave', () => masterLi.classList.remove('master-open'));
+    masterBtn.addEventListener('click', () => {
+      if (!masterLi.classList.contains('master-open')) masterLi.classList.add('master-open');
+      else masterLi.classList.remove('master-open');
+    });
+
+    // Dashboard stats/orders logic
+    const API_URL = 'http://localhost:3001/api'; let allOrders = [];
+    document.addEventListener('DOMContentLoaded', function () {
+      loadStats(); loadPendingOrders();
+      document.addEventListener('keydown', function (e) {
+        if (e.ctrlKey && e.key === 'F8') {
+          e.preventDefault();
+          const firstPending = allOrders.find(o => o.status === 'Pending');
+          if (firstPending) { generateInvoice(firstPending.id); }
+          else { alert('⚠️ No pending orders!'); }
+        }
+      });
+    });
+
+    async function loadStats() {
+      try {
+        const [customers, leads, orders] = await Promise.all([
+          fetch(`${API_URL}/customers`).then(r => r.json()),
+          fetch(`${API_URL}/leads`).then(r => r.json()),
+          fetch(`${API_URL}/orders`).then(r => r.json())
+        ]);
+        document.getElementById('total-customers').textContent = customers.length;
+        document.getElementById('total-leads').textContent = leads.length;
+        const pending = orders.filter(o => o.status === 'Pending');
+        document.getElementById('pending-orders').textContent = pending.length;
+        const revenue = orders.reduce((sum, o) => sum + parseFloat(o.grand_total || 0), 0);
+        document.getElementById('total-revenue').textContent = '₹' + revenue.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+      } catch (error) { console.error('Error:', error); }
+    }
+    async function loadPendingOrders() {
+      try {
+        const response = await fetch(`${API_URL}/orders`); allOrders = await response.json();
+        const pending = allOrders.filter(o => o.status === 'Pending'); renderOrders(pending);
+      } catch (error) { console.error('Error:', error); }
+    }
+    function renderOrders(orders) {
+      const tbody = document.querySelector('#orders-table tbody');
+      if (orders.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="empty-state-icon">📭</div><p>No pending orders</p></td></tr>';
+        return;
+      }
+      tbody.innerHTML = orders.map(order => `<tr><td><strong>#${order.id}</strong></td><td>${order.party_name || 'N/A'}</td><td>${new Date(order.order_date).toLocaleDateString('en-IN')}</td><td><strong>₹${parseFloat(order.grand_total || 0).toFixed(2)}</strong></td><td><span class="status-badge pending">Pending</span></td><td><button class="btn btn-success" onclick="generateInvoice(${order.id})">📄 Invoice</button><button class="btn btn-primary" onclick="viewOrder(${order.id})">👁️ View</button><button class="btn btn-warning" onclick="markComplete(${order.id})">✅ Complete</button></td></tr>`).join('');
+    }
+    function sortOrders() {
+      const sortBy = document.getElementById('sort-by').value;
+      let pending = allOrders.filter(o => o.status === 'Pending');
+      switch (sortBy) {
+        case 'date-desc': pending.sort((a, b) => new Date(b.order_date) - new Date(a.order_date)); break;
+        case 'date-asc': pending.sort((a, b) => new Date(a.order_date) - new Date(b.order_date)); break;
+        case 'party-asc': pending.sort((a, b) => (a.party_name || '').localeCompare(b.party_name || '')); break;
+        case 'party-desc': pending.sort((a, b) => (b.party_name || '').localeCompare(a.party_name || '')); break;
+        case 'amount-desc': pending.sort((a, b) => parseFloat(b.grand_total || 0) - parseFloat(a.grand_total || 0)); break;
+        case 'amount-asc': pending.sort((a, b) => parseFloat(a.grand_total || 0) - parseFloat(b.grand_total || 0)); break;
+      }
+      renderOrders(pending);
+    }
+    function refreshOrders() { loadStats(); loadPendingOrders(); }
+    function generateInvoice(orderId) { window.location.href = `/modules/sale_invoice/sale_invoice.html?id=${orderId}`; }
+    function viewOrder(orderId) {
+      alert(`👁️ Viewing Order #${orderId}\n\nOrder details:\n${JSON.stringify(allOrders.find(o => o.id === orderId), null, 2)}`);
+    }
+    async function markComplete(orderId) {
+      if (!confirm('Mark this order as Completed?')) return;
+      try {
+        await fetch(`${API_URL}/orders/${orderId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: 'Completed' })
+        });
+        alert('✅ Order marked as Completed!');
+        refreshOrders();
+      } catch (error) {
+        alert('❌ Error updating order');
+      }
+    }
+  </script>
+</body>
+
+</html>

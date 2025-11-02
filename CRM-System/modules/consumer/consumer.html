@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consumer Management - CRM</title>
+  <link rel="stylesheet" href="../../shared/common.css">
+  <link rel="stylesheet" href="consumer.css">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="logo">📊 CRM</div>
+    <nav class="main-nav">
+      <a href="/index.html">Dashboard</a>
+      <a href="../consumer/consumer.html" class="active">Consumer</a>
+      <a href="../lead/lead.html">Lead</a>
+      <a href="../order/order.html">Order</a>
+      <a href="../whatsapp/whatsapp.html">WhatsApp</a>
+    </nav>
+  </header>
+  <div class="consumer-container">
+    <h2>Consumer Entry</h2>
+    <input type="text" id="search-box" placeholder="🔍 Search Customer by Name, Mobile, Email, City...">
+    <form id="customer-form">
+      <div>
+        <input type="text" id="name" placeholder="Customer Name *" required>
+        
+        
+<select id="Category" name="Category" required>
+  <option value="">setCategory *</option>
+  <option value="A">A</option>
+  <option value="B">B</option>
+  <option value="C">C</option>
+  <option value="D">D</option>
+</select>
+         
+        <textarea id="shipping-details" placeholder="Shipping Details" rows="2" style="grid-column: 1 / -1;"></textarea>
+        <input type="text" id="mobile" placeholder="Mobile Number *" required maxlength="10">
+        <input type="email" id="email" placeholder="Email *" required>
+        <textarea id="address" placeholder="Address" rows="2" style="grid-column: 1 / -1;"></textarea>
+        <input type="text" id="city" placeholder="City">
+        <input type="text" id="district" placeholder="District">
+        <input type="text" id="state" placeholder="State">
+        <input type="text" id="pincode" placeholder="Pincode" maxlength="6">
+        <input type="text" id="distributor-code" placeholder="Distributor Code">
+        <input type="text" id="docket-no" placeholder="Docket No.">
+        
+        
+      </div>
+      
+      <input type="hidden" id="customer-id">
+      <button type="submit" id="submit-btn">Add Customer</button>
+    </form>
+    <div id="summary"></div>
+    <table id="customers-table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Consumer Name</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>District</th>
+          <th>State</th>
+          <th>Pincode</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <script src="../../shared/api.js"></script>
+  <script src="../../shared/utils.js"></script>
+  <script src="consumer.js"></script>
+</body>
+</html>

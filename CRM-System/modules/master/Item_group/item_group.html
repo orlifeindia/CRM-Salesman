@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Item Group Master</title>
+  <link rel="stylesheet" href="item_group.css">
+</head>
+<body>
+  <!-- Top Navigation/Menu -->
+  
+  <div class="master-container">
+    <div class="title-bar">Modify Item Group Master</div>
+    <form id="groupForm">
+      <div class="form-row">
+        <label class="form-label">Group</label>
+        <input type="text" class="form-input" id="groupName" value="1 BATTERY GROUP">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Alias</label>
+        <input type="text" class="form-input" id="alias">
+      </div>
+      <div class="form-row">
+        <label class="form-label">Primary Group (Y/N)</label>
+        <select class="form-select" id="primaryGroup">
+          <option value="Y">Y</option>
+          <option value="N">N</option>
+        </select>
+      </div>
+      <div class="form-row hidden" id="underGroupRow">
+        <label class="form-label">Under Group</label>
+        <select class="form-input" id="underGroup">
+          <option>ROW METERYAL</option>
+          <option selected>1 BATTERY GROUP</option>
+          <option>2 CHARGER GROUP</option>
+          <option>60 PC CHARGER</option>
+          <option>Accessories</option>
+          <option>ACCESSORIES GROUP</option>
+        </select>
+      </div>
+      <div class="button-row">
+        <button type="submit" class="btn">Save</button>
+        <button type="button" class="btn">Quit</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('primaryGroup').addEventListener('change', function() {
+      const underGroupRow = document.getElementById('underGroupRow');
+      if (this.value === 'N') {
+        underGroupRow.classList.remove('hidden');
+      } else {
+        underGroupRow.classList.add('hidden');
+      }
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      const primaryGroup = document.getElementById('primaryGroup');
+      const underGroupRow = document.getElementById('underGroupRow');
+      if (primaryGroup.value === 'Y') underGroupRow.classList.add('hidden');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unit Master</title>
+  <style>
+    body { font-family: Arial; background: #d3ecec; }
+    .unit-box {
+      max-width: 420px; margin: 50px auto;
+      background: #e8f7f8; padding: 28px 22px;
+      border: 1.5px solid #a8d1d6; border-radius: 12px;
+    }
+    .unit-header {
+      text-align: center; margin-bottom: 24px;
+    }
+    .unit-btn-header {
+      background: #c44242; color: #fff; border: none;
+      padding: 10px 32px; font-weight: 600; border-radius: 6px;
+      font-size: 16px;
+    }
+    .unit-label {
+      display: block; margin-bottom: 5px;
+      color: #0a4a5c; font-size: 15px; font-weight: 500;
+    }
+    .unit-input {
+      width: 94%; padding: 9px 8px;
+      border: 1.2px solid #a8c5b9; border-radius: 5px;
+      font-size: 15px; margin-bottom: 14px;
+    }
+    .unit-btn-row {
+      text-align: center; margin-top: 18px;
+    }
+    .unit-btn {
+      background: #28c382; color: #fff; border: none;
+      padding: 10px 26px; font-weight: 600; border-radius: 6px;
+      font-size: 15px; margin: 0 8px;
+    }
+    .unit-btn.quit { background: #d6dbd9; color: #454b51; }
+    #result { margin-top: 12px; text-align: center; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="unit-box">
+    <div class="unit-header">
+      <button class="unit-btn-header">Add Unit Master</button>
+    </div>
+    <form id="unit-form">
+      <label class="unit-label">Unit Name</label>
+      <input type="text" class="unit-input" id="unitName" tabindex="1" required>
+      
+      <label class="unit-label">Alias</label>
+      <input type="text" class="unit-input" id="alias" tabindex="2">
+      
+      <label class="unit-label">Print Name</label>
+      <input type="text" class="unit-input" id="printName" tabindex="3">
+      
+      <label class="unit-label">UQC (for GST e-Return)</label>
+      <input type="text" class="unit-input" id="uqc" tabindex="4">
+      
+      <div class="unit-btn-row">
+        <button class="unit-btn" type="submit" tabindex="5">Save</button>
+        <button class="unit-btn quit" type="button" tabindex="6">Quit</button>
+      </div>
+    </form>
+    <div id="result"></div>
+  </div>
+  <script src="unit.js"></script>
+</body>
+</html>

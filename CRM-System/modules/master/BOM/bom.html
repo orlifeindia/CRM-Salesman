@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bill of Material (BOM) Master</title>
+  <style>
+    body { background:#e9fce9; font-family:calibri,arial,sans-serif; }
+    .bom-box { max-width:740px; margin:32px auto; background:#e3ffe1; border:2px solid #b2c49f; border-radius:10px; padding:22px 26px; }
+    .bom-titlebar { background:#b75454; color:#fff; text-align:center; font-weight:700; border-radius:5px; letter-spacing:0.7px; font-size:17px; margin-bottom:20px; padding:4.5px 0;}
+    .bom-row { display:flex; align-items:baseline; margin-bottom:13px; gap:18px;}
+    .bom-label { min-width:135px; color:#1c342f; font-size:15.1px; font-weight:600;}
+    .bom-inp,.bom-sel { background:#ffffef; border:1.2px solid #c4e3a1; border-radius:4px; font-size:15px; padding:7px 7px; min-width:122px;}
+    .bom-section-label {font-weight:700; color:#0c6010; margin:12px 0 12px 0; font-size:17px; border-bottom: 2px solid #b8e010;}
+    .bom-table { width:99%; border-collapse:collapse; margin-bottom:13px;}
+    .bom-table th,.bom-table td { border:1px solid #c5dfa1; padding:7px 7px; font-size:15px;}
+    .bom-table th { background:#f3ffee; color:#328638; font-weight:700;}
+    .bom-table td input,.bom-table td select { width:90%; background:#fff; border:none; font-size:15px;}
+    .add-row-btn {background:#8abe67; color:white; border:none; border-radius:5px; padding:5px 16px; font-weight:600; margin:6px 0 12px 0; cursor:pointer;}
+    .add-row-btn:hover {background:#65943d;}
+    .bom-bottom {text-align:center; margin-top:19px;}
+    .bom-btn {background:#f7f7e3; border:1.2px solid #b3b396; border-radius:3.8px; font-size:15px; color:#4b4707; font-weight:600; padding: 7px 32px; margin:0 7px; cursor:pointer;}
+    .bom-btn:hover {background:#eafabd;}
+    .center { text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="bom-box">
+    <div class="bom-titlebar">Modify Bill of Material Master</div>
+    <form id="bomForm" autocomplete="off">
+      <div class="bom-row">
+        <span class="bom-label">BOM Name</span>
+        <input type="text" class="bom-inp" id="bom_name" required value="10LITE BATTERY">
+      </div>
+      <div class="bom-row">
+        <span class="bom-label">Alias</span>
+        <input type="text" class="bom-inp" id="alias">
+      </div>
+      <div class="bom-row">
+        <span class="bom-label">Item to Produce</span>
+        <input type="text" class="bom-inp" id="prod_item" style="min-width:200px;" required value="10 LITE BATTERY">
+      </div>
+      <div class="bom-row">
+        <span class="bom-label">Quantity</span>
+        <input type="number" min="0" step="0.001" class="bom-inp" id="prod_qty" value="1" style="width:90px;">
+        <span class="bom-label" style="min-width:54px;">Unit</span>
+        <input type="text" class="bom-inp" id="prod_unit" value="Pcs" style="width:85px;">
+      </div>
+      <div class="bom-row">
+        <span class="bom-label">Expenses/Unit</span>
+        <input type="number" min="0" step="0.001" class="bom-inp" id="expense_unit" value="0">
+      </div>
+      <!-- Removed cross fields as per image -->
+
+      <!-- Raw Material Section -->
+      <span class="bom-section-label">Raw Material Consumed</span>
+      <table class="bom-table" id="rawTable">
+        <thead>
+          <tr>
+            <th class="center">S No.</th>
+            <th>Item Name</th>
+            <th>Qty</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will be filled by JS, init with 5 rows -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2" class="center"><button type="button" class="add-row-btn" onclick="addRawRow()">+ Add Row</button></td>
+            <td id="rawTotal" class="center">0.000</td>
+            <td class="center">Pcs</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <span class="bom-section-label">By-Product Generated</span>
+      <table class="bom-table" id="bpTable">
+        <thead>
+          <tr>
+            <th class="center">S No.</th>
+            <th>Item Name</th>
+            <th>Qty</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows filled by JS, 5 rows -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td id="bpTotal" class="center">0.000</td>
+            <td class="center">Pcs</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <div class="bom-bottom">
+        <button type="submit" class="bom-btn">Save</button>
+        <button type="button" class="bom-btn" onclick="window.history.back()">Quit</button>
+      </div>
+    </form>
+  </div>
+  <script src="bom.js"></script>
+</body>
+</html>
