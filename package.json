@@ -54,3 +54,8 @@
     "nodemon": "^3.0.1"
   }
 }
+"main": "./server/server.js",
+"scripts": {
+  "start": "node ./server/server.js",
+  "dev": "nodemon ./server/server.js"
+},
