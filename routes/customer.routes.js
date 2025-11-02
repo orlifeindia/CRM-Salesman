@@ -117,4 +117,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 // ========== EXPORT ==========
-module.exports = { router, setPool };
+module.exports = {
+  setPool: (p) => pool = p,
+  router
+};
