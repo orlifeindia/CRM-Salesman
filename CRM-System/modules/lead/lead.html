@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Management - CRM</title>
+  <link rel="stylesheet" href="../../shared/common.css">
+  <link rel="stylesheet" href="lead.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="top-bar">
+    <div class="logo">📊 CRM System</div>
+    <nav class="main-nav">
+      <a href="../../index.html">Dashboard</a>
+      <a href="../consumer/consumer.html">Consumer</a>
+      <a href="lead.html" class="active">Lead</a>
+      <a href="../order/order.html">Order</a>
+    </nav>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container main-lead-content">
+    <h2 class="lead-title">🎯 Lead Management</h2>
+
+<!-- 🔍 Lead Search Box -->
+<div class="lead-search-container">
+  <input
+    type="text"
+    id="lead-search-box"
+    placeholder="🔍 Search by Name, Mobile, Email, Status..."
+    oninput="filterLeadList()"
+    class="lead-search-input"
+  />
+</div>
+
+    <!-- Add Lead Form -->
+    <form id="lead-form" class="lead-form">
+      <h3>Add New Lead</h3>
+      <div class="lead-form-row">
+        <input type="text" id="lead-name" placeholder="Lead Name *" required>
+        <input type="text" id="lead-mobile" placeholder="Mobile *" required maxlength="10">
+        <input type="email" id="lead-email" placeholder="Email (optional)">
+        <select id="lead-status" required>
+          <option value="New">New</option>
+          <option value="Contacted">Contacted</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Converted">Converted</option>
+          <option value="Lost">Lost</option>
+        </select>
+      </div>
+      <button type="submit" class="lead-add-btn">✅ Add Lead</button>
+    </form>
+
+    <!-- Action Buttons -->
+    <div class="action-bar">
+      <button id="export-selected-leads-btn" class="ac-btn ac-btn-info">📥 Export Selected</button>
+      <button id="export-all-leads-btn" class="ac-btn ac-btn-success">📊 Export All</button>
+      <button id="bulk-whatsapp-btn" class="ac-btn ac-btn-whatsapp">📱 Bulk WhatsApp</button>
+      <input type="file" id="lead-import-file" accept=".csv" class="ac-file">
+      <button id="import-leads-btn" class="ac-btn ac-btn-secondary">📂 Import CSV</button>
+    </div>
+
+    <!-- Summary -->
+    <div id="summary" class="lead-summary"></div>
+
+    <!-- Leads Table -->
+    <div class="table-wrap">
+      <table id="leads-table">
+        <thead>
+          <tr>
+            <th><input type="checkbox" id="select-all-leads"></th>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Edit Lead Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>✏️ Edit Lead</h3>
+        <span class="close" onclick="closeEditModal()">&times;</span>
+      </div>
+      <form id="edit-lead-form">
+        <input type="hidden" id="edit-lead-id">
+        <div class="edit-lead-fields">
+          <input type="text" id="edit-lead-name" placeholder="Lead Name *" required>
+          <input type="text" id="edit-lead-mobile" placeholder="Mobile *" required maxlength="10">
+          <input type="email" id="edit-lead-email" placeholder="Email">
+          <select id="edit-lead-status">
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Converted">Converted</option>
+            <option value="Lost">Lost</option>
+          </select>
+        </div>
+        <div class="edit-lead-actions">
+          <button type="submit" class="lead-save-btn">💾 Save</button>
+          <button type="button" class="lead-convert-btn" onclick="convertToCustomer()">👥 Convert</button>
+          <button type="button" class="lead-cancel-btn" onclick="closeEditModal()">✖️ Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Conversion Modal (structure kept, but JS-controlled) -->
+  <div id="conversionModal" class="modal">
+    <div class="modal-content">
+      <!-- Yaha aapka lead-to-customer conversion modal dynamic or js-se fill hoga -->
+    </div>
+  </div>
+
+  <script src="../../shared/api.js"></script>
+  <script src="lead.js"></script>
+</body>
+</html>

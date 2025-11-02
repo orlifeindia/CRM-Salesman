@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Management - CRM</title>
+  <link rel="stylesheet" href="../../shared/common.css">
+</head>
+
+
+<body>
+  <!-- Header -->
+  <header class="top-bar">
+    <div class="logo">📊 CRM System</div>
+    
+    <nav class="main-nav">
+      <a href="../../index.html">Dashboard</a>
+      <a href="../consumer/consumer.html">Consumer</a>
+      <a href="../lead/lead.html">Lead</a>
+      <a href="order.html" class="active">Order</a>
+      <a href="/modules/reports/reports.html">Reports</a>
+    </nav>
+  </header>
+
+  <!-- Main Content Container -->
+  <div class="container" style="max-width: 1400px; margin: 30px auto; padding: 30px;">
+    <h2 style="color: #2c3e50; margin-bottom: 20px; font-size: 28px; border-bottom: 3px solid #1976d2; padding-bottom: 10px;">📦 Order Entry</h2>
+
+    <!-- Order Header Form -->
+    <form id="order-header-form" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+        
+        <!-- Party Dropdown -->
+        <div>
+          <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #495057;">Party Name *</label>
+          <select id="party-select" required style="padding: 10px; width: 100%; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+            <option value="">-- Select Party --</option>
+            <option value="add-new">+ Add New Party</option>
+          </select>
+        </div>
+
+        <!-- Order Date -->
+        <div>
+          <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #495057;">Order Date *</label>
+          <input type="date" id="order-date" required style="padding: 10px; width: 100%; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+        </div>
+
+        <!-- Quotation No -->
+        <div>
+          <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #495057;">Quotation No.</label>
+          <input type="text" id="quotation-no" placeholder="QT-001" style="padding: 10px; width: 100%; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+        </div>
+      </div>
+
+      <!-- Narration -->
+      <div>
+        <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #495057;">Narration / Notes</label>
+        <textarea id="narration" placeholder="Additional notes..." rows="2" style="width: 100%; padding: 10px; border: 2px solid #ddd; border-radius: 5px; resize: vertical; font-size: 14px;"></textarea>
+      </div>
+    </form>
+
+    <!-- Item Entry Form -->
+    <form id="order-item-form" style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+      <h3 style="margin-bottom: 15px; color: #1976d2;">➕ Add Order Item</h3>
+      <div style="display: grid; grid-template-columns: 2fr 1fr 0.8fr 0.8fr 1fr 0.8fr; gap: 10px; margin-bottom: 10px;">
+        <input type="text" id="item-description" placeholder="Item Description *" required style="padding: 10px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+        <input type="text" id="item-hsn" placeholder="HSN Code" style="padding: 10px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+        <input type="number" id="item-qty" placeholder="Qty *" required min="1" value="1" style="padding: 10px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+        <input type="text" id="item-unit" placeholder="Unit" value="Pcs" style="padding: 10px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+        <input type="number" id="item-price" placeholder="Price *" required min="0" step="0.01" style="padding: 10px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+        <input type="number" id="item-gst" placeholder="GST %" required min="0" max="100" step="0.01" value="18" style="padding: 10px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;">
+      </div>
+      <button type="submit" style="background: #1976d2; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 14px;">
+        ➕ Add Item to Order
+      </button>
+    </form>
+
+    <!-- Order Items Table -->
+    <div style="overflow-x: auto; margin-bottom: 20px;">
+      <table id="order-table" border="0" cellspacing="0" cellpadding="10" style="width:100%; border-collapse: collapse; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <thead style="background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%); color: white;">
+          <tr>
+            <th style="text-align: center;">S.No</th>
+            <th style="text-align: left;">Description</th>
+            <th style="text-align: center;">HSN</th>
+            <th style="text-align: center;">Qty</th>
+            <th style="text-align: center;">Unit</th>
+            <th style="text-align: right;">Price</th>
+            <th style="text-align: center;">GST %</th>
+            <th style="text-align: right;">GST Amt</th>
+            <th style="text-align: right;">Amount</th>
+            <th style="text-align: center;">Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot style="font-weight: bold; background: #f5f5f5;">
+          <tr>
+            <td colspan="8" style="text-align: right; padding: 15px; font-size: 18px;">Grand Total:</td>
+            <td id="grand-total" style="text-align: right; padding: 15px; font-size: 18px; color: #28a745;">₹0.00</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Submit Order Button -->
+    <div style="text-align: right;">
+      <button id="submit-order-btn" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 15px 40px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);">
+        💾 Submit Complete Order
+      </button>
+    </div>
+  </div>
+
+  <!-- Party Add Modal -->
+  <div id="party-add-modal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 30px; border-radius: 10px; z-index: 1000; box-shadow: 0 10px 40px rgba(0,0,0,0.3); min-width: 400px;">
+    <h3 style="margin-bottom: 20px; color: #2c3e50;">Add New Party</h3>
+    <form id="quick-add-party-form">
+      <input type="text" id="quick-party-name" placeholder="Party Name *" required style="display: block; margin-bottom: 15px; padding: 12px; width: 100%; border: 2px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+      <input type="text" id="quick-party-mobile" placeholder="Mobile *" required maxlength="10" style="display: block; margin-bottom: 15px; padding: 12px; width: 100%; border: 2px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+      <input type="email" id="quick-party-email" placeholder="Email (optional)" style="display: block; margin-bottom: 15px; padding: 12px; width: 100%; border: 2px solid #ddd; border-radius: 5px; box-sizing: border-box;">
+      <div style="margin-top: 20px; display: flex; gap: 10px;">
+        <button type="submit" style="flex: 1; background: #28a745; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">✅ Save Party</button>
+        <button type="button" id="cancel-add-party-btn" style="flex: 1; background: #dc3545; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">❌ Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div id="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999;"></div>
+
+  <!-- Scripts -->
+  <script src="../../shared/api.js"></script>
+  <script src="order.js"></script>
+</body>
+</html>

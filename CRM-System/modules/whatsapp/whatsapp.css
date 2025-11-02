@@ -1,0 +1,228 @@
+/* =============================
+   ORLIFE CRM - WhatsApp Module
+   Smart UI Theme (Dashboard Style)
+   ============================= */
+
+/* Base Layout */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  background: #f4f8fb;
+  color: #333;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 220px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #e3ebf0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px #00000015;
+  z-index: 100;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px;
+  border-bottom: 1px solid #e3ebf0;
+}
+
+.sidebar-title {
+  font-weight: 700;
+  font-size: 18px;
+  color: #128c7e;
+}
+
+.sidebar-menu {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.sidebar-menu li {
+  margin: 4px 0;
+}
+
+.side-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #444;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.side-link:hover {
+  background: #f1f9f4;
+  color: #128c7e;
+}
+
+.side-link.active {
+  background: linear-gradient(90deg, #25d366, #21b95a);
+  color: #fff !important;
+  box-shadow: 0 2px 8px #25d36644;
+}
+
+.side-icon {
+  font-size: 18px;
+}
+
+/* ===== Main Section ===== */
+.main-content {
+  margin-left: 220px;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+/* Header Banner */
+.wa-header {
+  background: linear-gradient(90deg, #25d366, #128c7e);
+  color: #fff;
+  padding: 18px 24px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px #25d36633;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wa-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.wa-header svg {
+  background: #fff;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+/* Main Box Section */
+.wa-section {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px #d9e4e5;
+  padding: 24px;
+  margin-top: 25px;
+}
+
+/* Buttons */
+.wa-menu {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.wa-btn {
+  background: linear-gradient(90deg, #25d366, #21b95a);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px #25d36666;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.wa-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, #21b95a, #128c7e);
+}
+
+/* Forms */
+form label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-top: 12px;
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  border: 1px solid #cfded4;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+  margin-top: 4px;
+  transition: 0.2s ease;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #25d366;
+  box-shadow: 0 0 0 3px #25d36622;
+}
+
+/* Cards for Sections */
+.wa-auto-form, .wa-manual-form, .wa-templates-form {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 20px #d9e4e5;
+  margin-top: 15px;
+}
+
+.wa-auto-form h3,
+.wa-manual-form h3,
+.wa-templates-form h3 {
+  color: #128c7e;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Templates List */
+#wa-template-list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+}
+
+#wa-template-list li {
+  background: #f6fff9;
+  border: 1px solid #d1ebd9;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+}
+
+/* Status Messages */
+#wa-auto-status,
+#wa-manual-status {
+  margin-top: 10px;
+  color: #128c7e;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+  .sidebar {
+    width: 60px;
+  }
+  .sidebar-title {
+    display: none;
+  }
+  .side-link {
+    justify-content: center;
+  }
+  .main-content {
+    margin-left: 60px;
+    padding: 20px;
+  }
+  .wa-section {
+    padding: 18px;
+  }
+}

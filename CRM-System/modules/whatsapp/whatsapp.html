@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orlife CRM WhatsApp Automation</title>
+  <link rel="stylesheet" href="whatsapp.css">
+  <style>
+    body {font-family: 'Segoe UI', Arial, sans-serif; background: #f6fffa; margin: 0; min-height: 100vh;}
+    .main-content { margin-left: 220px; padding: 30px 0; min-height:100vh; background:#f6fffa;}
+    @media (max-width:650px) {.main-content{margin-left:56px;padding:12px 0;}}
+    .wa-section {
+      max-width: 70%; margin: 40px auto 40px auto;
+      background: #fff; border-radius: 14px;
+      box-shadow: 0 6px 40px #25d36633; padding: 30px 24px;
+    }
+    /* Paste your previous whatsapp.css here */
+    /* ...sidebar and module styles... */
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">
+        <svg width="32" height="32" viewBox="0 0 256 256"><circle cx="128" cy="128" r="128" fill="#25D366"/><path d="M128 52A76 76 0 108 128c0 13.2 3.2 26 9.3 37.3l-14 40.6 41.3-13.7A75.7 75.7 0 00128 204a76 76 0 000-152zm44.7 105.6c-2 5.6-10 10.4-14.1 11.1-3.7.8-8.1 1.1-13.7-.8-3.2-1-7.3-2.4-12.4-4.7-21.9-9.5-36.2-31.8-37.3-33.3-1.1-1.5-8.9-12-8.9-23.1 0-11 5.6-16.5 7.6-18.7 2-2.2 4.2-2.7 5.7-2.7 1.5 0 2.8.2 4 2.1 1.2 1.9 4.7 6.7 5.2 7.2.4.6.9 1.3 1.2 2.2.4.9.2 1.6-.1 2.4-.3.8-1.8 2.4-2.4 3.2-.6.8-1.2 1.4-.3 2.8.8 1.4 3.3 5.5 7.1 9.3 6.1 5.9 11.2 7.8 12.8 8.6 1.6.7 2.6.6 3.5-.3.9-.8 4.1-4.7 5.2-6.3 1.1-1.6 2-1.3 3.3-.8 1.4.5 8.6 4 10 4.7 1.4.7 2.3 1 2.7 1.5.4.4.4 5.7-2 11.3z" fill="#fff"/></svg>
+      </span>
+      <span class="sidebar-title">Orlife CRM</span>
+    </div>
+    <ul class="sidebar-menu">  
+    <!-- WhatsApp Sidebar Button -->
+      <li><a href="#" class="side-link active"><span class="side-icon">💬</span>WhatsApp</a></li>
+     
+      <li><a href="/index.html" class="side-link"><span class="side-icon">🏠</span>Home</a></li>
+      <li><a href="/modules/lead/lead.html" class="side-link"><span class="side-icon">👤</span>Leads</a></li>
+      <li><a href="/modules/order/order.html" class="side-link"><span class="side-icon">🛒</span>Orders</a></li>
+      <li><a href="/modules/reports/reports.html" class="side-link"><span class="side-icon">📊</span>Reports</a></li>
+      <li><a href="/modules/settings/settings.html" class="side-link"><span class="side-icon">⚙️</span>Settings</a></li>
+    </ul>
+  </nav>
+
+  <!-- Central WhatsApp Module Section -->
+  <main class="main-content">
+    <div class="wa-section">
+      <div class="wa-header">
+        <span class="wa-logo">
+          <svg width="32" height="32" viewBox="0 0 256 256"><circle cx="128" cy="128" r="128" fill="#25D366"/><path d="M128 52A76 76 0 108 128c0 13.2 3.2 26 9.3 37.3l-14 40.6 41.3-13.7A75.7 75.7 0 00128 204a76 76 0 000-152zm44.7 105.6c-2 5.6-10 10.4-14.1 11.1-3.7.8-8.1 1.1-13.7-.8-3.2-1-7.3-2.4-12.4-4.7-21.9-9.5-36.2-31.8-37.3-33.3-1.1-1.5-8.9-12-8.9-23.1 0-11 5.6-16.5 7.6-18.7 2-2.2 4.2-2.7 5.7-2.7 1.5 0 2.8.2 4 2.1 1.2 1.9 4.7 6.7 5.2 7.2.4.6.9 1.3 1.2 2.2.4.9.2 1.6-.1 2.4-.3.8-1.8 2.4-2.4 3.2-.6.8-1.2 1.4-.3 2.8.8 1.4 3.3 5.5 7.1 9.3 6.1 5.9 11.2 7.8 12.8 8.6 1.6.7 2.6.6 3.5-.3.9-.8 4.1-4.7 5.2-6.3 1.1-1.6 2-1.3 3.3-.8 1.4.5 8.6 4 10 4.7 1.4.7 2.3 1 2.7 1.5.4.4.4 5.7-2 11.3z" fill="#fff"/></svg>
+        </span>
+        <h1>WhatsApp Automation</h1>
+      </div>
+      <div class="wa-menu">
+        <button class="wa-btn" id="wa-send-auto">Auto Reply Setup</button>
+        <button class="wa-btn" id="wa-manual-msg">Manual WhatsApp Send</button>
+        <button class="wa-btn" id="wa-templates">Manage Templates</button>
+      </div>
+
+      <div class="wa-content" id="wa-content">
+        <!-- By default Auto Reply Form Show -->
+        <!-- Step 2 -->
+        <div class="wa-auto-form">
+          <h3>Auto WhatsApp Reply Setup</h3>
+          <form id="wa-auto-form">
+            <label>Template Message:</label>
+            <textarea id="wa-auto-msg" rows="4" required>नमस्ते {name}, Orlife टीम में आपका स्वागत है! हमारी टीम जल्द ही आपसे संपर्क करेगी। धन्यवाद!</textarea>
+            <br>
+            <label>Send this auto-reply on new lead:</label>
+            <input type="checkbox" id="wa-auto-enable" checked> Enable Auto Reply
+            <br><br>
+            <button type="submit" class="wa-btn">Save & Activate</button>
+          </form>
+          <p id="wa-auto-status"></p>
+        </div>
+      </div>
+      <!-- Manual + Template modules are hidden by default, show on button click -->
+      <div style="display:none;" id="wa-manual-section">
+        <div class="wa-manual-form">
+          <h3> Manual WhatsApp Send</h3>
+          <form id="wa-manual-form">
+            <label>Customer Name:</label>
+            <input type="text" id="wa-manual-name" required>
+            <label>Mobile:</label>
+            <input type="text" id="wa-manual-mobile" required>
+            <label>Message:</label>
+            <textarea id="wa-manual-msg" rows="3" required>Thank you for choosing ORLIFE India!</textarea>
+            <button type="submit" class="wa-btn">WhatsApp भेजें</button>
+          </form>
+          <p id="wa-manual-status"></p>
+        </div>
+      </div>
+      <div style="display:none;" id="wa-templates-section">
+        <div class="wa-templates-form">
+          <h3>WhatsApp Template Manager</h3>
+          <form id="wa-template-form">
+            <label>Template Title:</label>
+            <input type="text" id="wa-template-title" required>
+            <label>Template Message:</label>
+            <textarea id="wa-template-msg" rows="3" required></textarea>
+            <button type="submit" class="wa-btn">Template Save करें</button>
+          </form>
+          <h4>Saved Templates:</h4>
+          <ul id="wa-template-list"></ul>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="whatsapp.js"></script>
+  <script>
+    // Module navigation buttons (show relevant section only)
+    function showSection(section){
+      document.getElementById('wa-content').style.display = section==='auto'?'block':'none';
+      document.getElementById('wa-manual-section').style.display = section==='manual'?'block':'none';
+      document.getElementById('wa-templates-section').style.display = section==='templates'?'block':'none';
+    }
+    document.getElementById('wa-send-auto').onclick = ()=> showSection('auto');
+    document.getElementById('wa-manual-msg').onclick = ()=> showSection('manual');
+    document.getElementById('wa-templates').onclick = ()=> showSection('templates');
+  </script>
+</body>
+</html>

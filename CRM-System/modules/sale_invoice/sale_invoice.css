@@ -1,0 +1,159 @@
+body {
+  background: #f2f6fa;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.top-bar {
+  background: linear-gradient(135deg, #2470c8, #18346d 80%);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 28px;
+  border-bottom: 2px solid #1976d2;
+}
+
+.logo {
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.main-nav {
+  font-size: 1.08em;
+  display: flex;
+  gap: 18px;
+}
+.main-nav a {
+  color: #e3ebfa;
+  text-decoration: none;
+  padding: 7px 13px;
+  border-radius: 7px;
+  transition: 0.17s;
+}
+.main-nav a.active,
+.main-nav a:hover {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.container {
+  background: #fff;
+  box-shadow: 0 6px 36px rgba(50,90,190,0.07);
+  border-radius: 12px;
+}
+
+h2 {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #28587b;
+  margin-bottom: 4px;
+  font-size: 1em;
+  display: block;
+}
+
+.form-input,
+select.form-input,
+textarea.form-input {
+  border: 2px solid #dde6ed;
+  border-radius: 5px;
+  padding: 9px 12px;
+  font-size: 1.05em;
+  width: 100%;
+  margin-bottom: 0px;
+  transition: 0.16s;
+  background: #f7fbff;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1976d2;
+  background: #f3f7ff;
+}
+
+.main-btn {
+  font-weight: 600;
+  padding: 9px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #1976d2;
+  color: white;
+  transition: background 0.18s;
+  box-shadow: 0 1px 4px rgba(30,90,190,0.08);
+}
+.main-btn:hover {
+  background: #2470c8;
+}
+
+#invoice-header-form,
+#invoice-item-form {
+  box-shadow: 0 2px 13px rgba(30,90,185,0.05);
+}
+
+#invoice-table {
+  font-size: 1.06em;
+}
+#invoice-table th, #invoice-table td {
+  border: 1px solid #d8e8f8;
+  padding: 7px 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+#invoice-table th {
+  background: #1976d2;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+#invoice-table td {
+  background: #fbfeff;
+}
+#invoice-table tfoot tr td {
+  background: #f9f9dc !important;
+  font-weight: bold;
+  font-size: 1.12em;
+}
+
+#grand-total {
+  font-weight: bold;
+  color: #28a745;
+  background: transparent;
+}
+
+/* Modal */
+#party-add-modal {
+  box-shadow: 0 8px 40px rgba(90,120,160,0.17);
+  border: 2px solid #dde6ed;
+}
+#party-add-modal h3 {
+  font-size: 1.32em;
+}
+#modal-overlay {
+  background: rgba(30, 70, 150, 0.34);
+}
+
+/* Responsive tweaks */
+@media (max-width:990px) {
+  .container {
+    max-width: 99vw;
+    padding: 12px;
+  }
+  #invoice-header-form,
+  #invoice-item-form {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width:600px) {
+  .main-nav { flex-direction: column; gap:6px; }
+  h2 { font-size: 1.2em; }
+  #invoice-table th, #invoice-table td { font-size: 0.87em; padding: 5px 3px; }
+  .form-input, select.form-input { font-size: 0.96em; }
+}

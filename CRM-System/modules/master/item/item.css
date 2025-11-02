@@ -1,0 +1,73 @@
+body {
+    font-family: Arial;
+    background: #ceeaea;
+}
+.erp-box {
+    max-width: 1200px;
+    margin: 38px auto;
+    background: #eaf7f9;
+    padding: 28px 12px 22px 12px;
+    border-radius: 12px;
+    border: 1.4px solid #b2dbea;
+}
+.erp-grid {
+    display: grid;
+    grid-template-columns: 28% 28% 1fr;
+    gap: 18px;
+}
+.erp-label {
+    display: block;
+    margin-bottom: 4px;
+    color: #08405d;
+    font-size: 15px;
+}
+.erp-input,
+.erp-select {
+    width: 93%;
+    padding: 7px 8px;
+    border-radius: 4px;
+    border: 1.1px solid #aac3b9;
+    font-size: 15px;
+}
+.erp-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.btn {
+    background: #28c382;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 14px;
+}
+.erp-section {
+    padding: 11px 13px 7px 13px;
+    background: #f9ffff;
+    border: 1.3px solid #bbe2e7;
+    border-radius: 7px;
+    margin-bottom: 7px;
+}
+.erp-title {
+    font-weight: bold;
+    color: #494196;
+    margin-bottom: 7px;
+}
+/* Search Suggestion Box Styles */
+.suggestion-box div {
+    padding: 8px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #e4f0ec;
+    color: #121314;
+    font-size: 15px;
+}
+.suggestion-box div:last-child { border-bottom: none; }
+.suggestion-box div:hover {
+    background: #e8fff2;
+    color: #035a32;
+    font-weight:700;
+}

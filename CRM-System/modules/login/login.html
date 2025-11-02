@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orlife CRM - Login</title>
+  <style>
+    body {
+      background: #f9fade;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .login-box {
+      border: 2px solid #a492fa;
+      background: #fafadf;
+      max-width: 650px;
+      margin: 30px auto 0 auto;
+      border-radius: 6px;
+      padding: 36px 24px 28px 36px;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+    .desc {font-size:16px;color:#2c2b36; opacity:0.86;}
+    .login-row {
+      margin: 35px 0 0 0; display:flex; flex-direction: column; gap:20px;
+    }
+    .input-wrap {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 8px;
+    }
+    .input-label {
+      min-width: 120px; padding:16px 18px;
+      font-size: 21px; font-weight: 600;
+      border-radius: 28px; background: linear-gradient(90deg,#b5ffe2,#86eaf2);
+      color: #182a5e; text-align: center;
+      box-shadow: 1px 2px 9px 0 #f5f8ff33;
+    }
+    .input-field {
+      font-size: 24px; border-radius: 28px; border: 1.2px solid #e0e3ec;
+      background: #fff; padding: 14px 24px; outline: none; min-width:280px; color: #bcbcb9;
+    }
+    .input-field:focus { background:#f7feee; border-color:#7ee2bb; color:#20232B;}
+    .note {
+      margin: 38px 0 0 0; font-size: 19px; color: #1c1c22; text-align: center;
+      font-family:'Poppins';
+    }
+    @media (max-width: 700px){
+      .login-box {max-width:98vw; padding:24px 2vw 8px 2vw;}
+      .input-label {font-size:17px; min-width:75px; padding:10px 8px;}
+      .input-field {font-size:17px;}
+      h1 {font-size:22px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>Militipale Comnay</h1>
+    <div class="desc">GST &amp; WO GST LOGIN ALAG ALAG RAHANA</div>
+    <div class="login-row">
+      <div class="input-wrap">
+        <div class="input-label">Login ID</div>
+        <input class="input-field" type="text" value="sanjay123" readonly>
+      </div>
+      <div class="input-wrap">
+        <div class="input-label" style="background:#c8f0f8;color:#202266;">Password</div>
+        <input class="input-field" type="text" value="saXXX23" readonly>
+      </div>
+    </div>
+    <div class="note">GST Login me baki ditel dikhe ya na dikhe</div>
+  </div>
+</body>
+</html>
